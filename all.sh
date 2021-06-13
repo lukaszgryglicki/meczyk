@@ -1,0 +1,2 @@
+#!/bin/bash
+RR=1 RG=0 RB=0 GR=0 GG=1 GB=0 BR=0 BG=0 BB=1 NA=1 RLO=.5 RHI=.5 GLO=.5 GHI=.5 BLO=.5 BHI=.5 Q=90 jpeg _XXX*.JPG
