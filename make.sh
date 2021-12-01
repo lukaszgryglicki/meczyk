@@ -17,7 +17,8 @@ then
 fi
 cp head.html index.html
 i=0
-for f in co_*.JPG
+#for f in co_*.JPG
+for f in _*.JPG
 do
   preview="preview_${width}x${height}_${f}"
   if [ ! -f "${preview}" ]
