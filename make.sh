@@ -1,7 +1,7 @@
 #!/bin/bash
 # params: width height n_per_line
-width=300
-height=200
+width=400
+height=300
 n_per_line=6
 if [ ! -z "$1" ]
 then
@@ -17,14 +17,13 @@ then
 fi
 cp head.html index.html
 i=0
-#for f in co_*.JPG
-for f in _*.JPG
+for f in *.JPG
 do
   preview="preview_${width}x${height}_${f}"
   if [ ! -f "${preview}" ]
   then
     echo "generating ${preview} preview"
-    convert "${f}" -geometry "${width}x${height}" "${preview}"
+    convert "${f}" -geometry "${width}x${height}" -quality 80% "${preview}"
   fi
   echo "<a href=\"./${f}\"><img src=\"./${preview}\" alt=\"${f}\" style=\"width:${width}px;height:${height}px;\"></a>" >> index.html
   i=$((i+1))
