@@ -1,5 +1,5 @@
 #!/bin/bash
-# params: width height n_per_line
+# params: width height n_per_line or PERC=5
 width=400
 height=300
 n_per_line=6
@@ -15,17 +15,37 @@ if [ ! -z "$3" ]
 then
   n_per_line="${3}"
 fi
+quality=80
+if [ ! -z "$Q" ]
+then
+  quality="${Q}"
+fi
 cp head.html index.html
 i=0
 for f in *.JPG
 do
-  preview="preview_${width}x${height}_${f}"
+  if [ -z "${PERC}" ]
+  then
+    preview="preview_${width}x${height}_${f}"
+  else
+    preview="preview_${PERC}perc_${f}"
+  fi
   if [ ! -f "${preview}" ]
   then
     echo "generating ${preview} preview"
-    convert "${f}" -geometry "${width}x${height}" -quality 80% "${preview}"
+    if [ -z "${PERC}" ]
+    then
+      convert "${f}" -geometry "${width}x${height}" -quality "${quality}%" "${preview}"
+    else
+      convert "${f}" -geometry "${PERC}%" -quality "${quality}%" "${preview}"
+    fi
   fi
-  echo "<a href=\"./${f}\"><img src=\"./${preview}\" alt=\"${f}\" style=\"width:${width}px;height:${height}px;\"></a>" >> index.html
+  if [ -z "${PERC}" ]
+  then
+    echo "<a href=\"./${f}\"><img src=\"./${preview}\" alt=\"${f}\" style=\"width:${width}px;height:${height}px;\"></a>" >> index.html
+  else
+    echo "<a href=\"./${f}\"><img src=\"./${preview}\" alt=\"${f}\"></a>" >> index.html
+  fi
   i=$((i+1))
   if [ "$i" = "$n_per_line" ]
   then
@@ -34,3 +54,5 @@ do
   fi
 done
 cat tail.html >> index.html
+rm -f page.zip && zip -9 page.zip make.sh *.html *.JPG && ls -l page.zip
+echo 'OK'
