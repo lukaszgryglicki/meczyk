@@ -3,6 +3,7 @@
 width=400
 height=300
 n_per_line=6
+zip_file=page.zip
 if [ ! -z "$1" ]
 then
   width="${1}"
@@ -19,6 +20,10 @@ quality=80
 if [ ! -z "$Q" ]
 then
   quality="${Q}"
+fi
+if [ ! -z "$ZIP_FILE" ]
+then
+  zip_file="${ZIP_FILE}"
 fi
 cp head.html index.html
 i=0
@@ -54,5 +59,5 @@ do
   fi
 done
 cat tail.html >> index.html
-rm -f page.zip && zip -9 page.zip make.sh *.html *.JPG && ls -l page.zip
+rm -f "${ZIP_FILE}" && zip -9 "${ZIP_FILE}" make.sh *.html *.JPG && ls -l "${ZIP_FILE}"
 echo 'OK'
