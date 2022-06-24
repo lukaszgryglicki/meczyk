@@ -59,5 +59,5 @@ do
   fi
 done
 cat tail.html >> index.html
-rm -f "${ZIP_FILE}" && zip -9 "${ZIP_FILE}" make.sh *.html *.JPG && ls -l "${ZIP_FILE}"
+rm -f "${zip_file}" && zip -9 "${zip_file}" make.sh *.html *.JPG && ls -l "${zip_file}"
 echo 'OK'
