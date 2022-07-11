@@ -27,7 +27,7 @@ then
 fi
 cp head.html index.html
 i=0
-for f in *.JPG
+for f in *.[jJ][pP]*[gG]
 do
   if [ -z "${PERC}" ]
   then
@@ -59,5 +59,5 @@ do
   fi
 done
 cat tail.html >> index.html
-rm -f "${zip_file}" && zip -9 "${zip_file}" make.sh *.html *.JPG && ls -l "${zip_file}"
+rm -f "${zip_file}" && zip -9 "${zip_file}" make.sh *.html *.[jJ][pP]*[gG] && ls -l "${zip_file}"
 echo 'OK'
