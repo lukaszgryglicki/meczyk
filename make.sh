@@ -59,5 +59,6 @@ do
   fi
 done
 cat tail.html >> index.html
-rm -f "${zip_file}" && zip -9 "${zip_file}" make.sh *.html *.[jJ][pP]*[gG] && ls -l "${zip_file}"
+vim index.html
+rm -f "${zip_file}" && zip -9 "${zip_file}" make.sh *.html *.[mM][pPoO][vV4] *.[jJ][pP]*[gG] && ls -l "${zip_file}"
 echo 'OK'
