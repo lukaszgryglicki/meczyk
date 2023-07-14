@@ -16,7 +16,7 @@ if [ ! -z "$3" ]
 then
   n_per_line="${3}"
 fi
-quality=80
+quality=75
 if [ ! -z "$Q" ]
 then
   quality="${Q}"
